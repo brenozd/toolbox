@@ -454,9 +454,7 @@ func createContainer(container, image, release, authFile string, showCommandToEn
 		"--network", "host",
 		"--no-hosts",
 		"--pid", "host",
-    "--cap-add=NET_BIND_SERVICE",
-    "--cap-add=NET_RAW",
-    "--cap-add=NET_ADMIN",
+    "--cap-add ALL",
 		"--privileged",
 		"--security-opt", "label=disable",
 		"--ulimit", "host",
@@ -487,7 +485,7 @@ func createContainer(container, image, release, authFile string, showCommandToEn
 	logrus.Debugf("Creating container %s:", container)
 	logrus.Debug("podman")
 	for _, arg := range createArgs {
-		logrus.Debugf("%s", arg)
+		logrus.Debugf("Arg %s", arg)
 	}
 
 	s := spinner.New(spinner.CharSets[9], 500*time.Millisecond)
